@@ -1,36 +1,95 @@
 ---
-import { shop } from '../data/silkroad';
-const title = `${shop.name}｜千葉・富士見の夜に`;
-const description = `千葉中央駅徒歩3分、千葉駅徒歩10分。Club シルクロードの店内、料金、ドリンク・おつまみ、アクセスをご案内。営業時間${shop.hours}。ご来店についてはお電話または公式LINEへ。`;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
-const ogImage = Astro.site ? new URL('/ogp.png', Astro.site).href : '/ogp.png';
+import { assets, shop } from '../data/silkroad';
+import { seo } from '../data/seo';
+import { absoluteUrl, siteConfig } from '../data/site.mjs';
+const canonical = absoluteUrl(Astro.url.pathname);
+const businessDescription = `${shop.name}は千葉県千葉市中央区富士見にある店舗です。営業時間${shop.hours}、定休日は${shop.closed}。${shop.holidayNote}。`;
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: shop.name,
-  ...(canonical ? { url: canonical } : {}),
-  telephone: shop.phoneHref.replace('tel:0', '+81'),
-  address: { '@type': 'PostalAddress', addressCountry: 'JP', addressRegion: '千葉県', addressLocality: '千葉市中央区', streetAddress: `富士見2-14-8 ${shop.building}` },
-  sameAs: [shop.instagram, shop.line],
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': seo.ids.website,
+      url: siteConfig.url,
+      name: shop.name,
+      inLanguage: seo.language,
+      publisher: { '@id': seo.ids.business },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': seo.ids.webpage,
+      url: canonical,
+      name: seo.title,
+      description: seo.description,
+      inLanguage: seo.language,
+      isPartOf: { '@id': seo.ids.website },
+      about: { '@id': seo.ids.business },
+      mainEntity: { '@id': seo.ids.business },
+      primaryImageOfPage: { '@id': seo.ids.primaryImage },
+    },
+    {
+      '@type': 'ImageObject',
+      '@id': seo.ids.primaryImage,
+      url: seo.image,
+      contentUrl: seo.image,
+      width: siteConfig.ogImageWidth,
+      height: siteConfig.ogImageHeight,
+      caption: seo.imageAlt,
+    },
+    {
+      '@type': 'ImageObject',
+      '@id': seo.ids.logo,
+      url: absoluteUrl(assets.logo.src),
+      contentUrl: absoluteUrl(assets.logo.src),
+      width: assets.logo.width,
+      height: assets.logo.height,
+      caption: seo.imageAlt,
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id': seo.ids.business,
+      name: shop.name,
+      url: siteConfig.url,
+      description: businessDescription,
+      telephone: shop.phoneHref.replace('tel:0', '+81'),
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: shop.addressParts.country,
+        addressRegion: shop.addressParts.region,
+        addressLocality: shop.addressParts.locality,
+        streetAddress: `${shop.addressParts.streetAddress} ${shop.building}`,
+      },
+      logo: { '@id': seo.ids.logo },
+      image: [absoluteUrl(assets.loungeWide.src), absoluteUrl(assets.loungeDepth.src), absoluteUrl(assets.entrance.src)],
+      hasMap: shop.map,
+      sameAs: [shop.instagram, shop.line],
+      mainEntityOfPage: { '@id': seo.ids.webpage },
+    },
+  ],
 };
 ---
-<title>{title}</title>
-<meta name="description" content={description} />
+<title>{seo.title}</title>
+<meta name="description" content={seo.description} />
+<meta name="robots" content={seo.robots} />
 <meta name="theme-color" content="#171416" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
-{canonical && <link rel="canonical" href={canonical} />}
+<link rel="canonical" href={canonical} />
+<link rel="sitemap" type="application/xml" href={absoluteUrl('/sitemap.xml')} />
 <meta property="og:type" content="website" />
-<meta property="og:locale" content="ja_JP" />
+<meta property="og:locale" content={seo.locale} />
 <meta property="og:site_name" content={shop.name} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={ogImage} />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content={`${shop.name} 公式ロゴ`} />
-{canonical && <meta property="og:url" content={canonical} />}
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={seo.description} />
+<meta property="og:image" content={seo.image} />
+<meta property="og:image:secure_url" content={seo.image} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content={siteConfig.ogImageWidth} />
+<meta property="og:image:height" content={siteConfig.ogImageHeight} />
+<meta property="og:image:alt" content={seo.imageAlt} />
+<meta property="og:url" content={canonical} />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:title" content={seo.title} />
+<meta name="twitter:description" content={seo.description} />
+<meta name="twitter:image" content={seo.image} />
+<meta name="twitter:image:alt" content={seo.imageAlt} />
 <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />

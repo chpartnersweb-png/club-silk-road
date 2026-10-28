@@ -15,13 +15,21 @@ import brandySheet from '../assets/メニュー参考/line_oa_chat_261019_190915
 import shochuSheet from '../assets/メニュー参考/line_oa_chat_261019_190917.jpg';
 import foodSheet from '../assets/メニュー参考/line_oa_chat_261019_190918.jpg';
 
-const mapQuery = 'Club シルクロード 千葉県千葉市中央区富士見2-14-8 KICビルワン';
+const addressParts = {
+  country: 'JP',
+  region: '千葉県',
+  locality: '千葉市中央区',
+  streetAddress: '富士見2-14-8',
+};
+const address = `${addressParts.region}${addressParts.locality}${addressParts.streetAddress}`;
+const mapQuery = `Club シルクロード ${address} KICビルワン`;
 
 export const shop = {
   name: 'Club シルクロード',
   phone: '043-225-8785',
   phoneHref: 'tel:0432258785',
-  address: '千葉県千葉市中央区富士見2-14-8',
+  address,
+  addressParts,
   building: 'KICビルワン 3F',
   hours: '20:00〜24:00',
   closed: '日曜日',

@@ -33,7 +33,7 @@
 3. 席数は提供情報どおり「30ボックス」と記載。
 4. 人物写真のスタンプは保持し、過去のイベント写真として紹介。在籍者名・人数・開催日を推測していない。
 5. ヒーローは生成イメージ。実際の店内は提供写真を使用。
-6. 公開先URLは未提供。架空のcanonicalやOGP絶対URLは追加していない。公開URL確定時は`astro.config.mjs`のsite設定と、必要なrobots・sitemapを整える。
+6. 公開先URLとして`https://club-silk-road.pages.dev/`が提供されたため、共通URL設定、canonical、OGP絶対URL、構造化データ、robots・sitemapを追加。詳細は`docs/SEO.md`を参照。公開・検索反映は未確認。
 7. 既存のpackage.json・package-lock.json・ファビコン・OGP・元写真を上書きしていない。追加依存パッケージなし。
 
 ## 確認状況
@@ -50,4 +50,4 @@
 
 AGENTS.mdに従い、開発サーバーはプロジェクト内で`npm run dev -- --background`を使用。管理は`npm run astro -- dev status`、`npm run astro -- dev logs`、`npm run astro -- dev stop`。
 
-料金の現行性、瓶ビールの適用条件、税の端数処理、イベント写真の掲載範囲、公開先URLについては計画書の確認事項を引き継ぐ。
+料金の現行性、瓶ビールの適用条件、税の端数処理、イベント写真の掲載範囲については計画書の確認事項を引き継ぐ。

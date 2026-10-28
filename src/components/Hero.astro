@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import { assets } from '../data/silkroad';
+import { assets, shop } from '../data/silkroad';
 import Brand from './Brand.astro';
 ---
 <section id="top" class="hero" aria-labelledby="hero-title">
   <div class="hero-media" data-hero-media><Image src={assets.hero} alt="" width={1672} height={941} widths={[640, 960, 1280, 1672]} sizes="100vw" format="webp" quality={90} loading="eager" fetchpriority="high" /></div>
   <div class="hero-shade" aria-hidden="true"></div>
-  <div class="hero-content"><div><Brand class="hero-brand" tone="light" width={880} priority /></div><h1 id="hero-title">千葉の夜に、ほどける。</h1></div>
+  <div class="hero-content"><div><Brand class="hero-brand" tone="light" width={880} priority /></div><h1 id="hero-title"><span class="visually-hidden">{shop.name}。 </span>千葉の夜に、ほどける。</h1></div>
   <div class="hero-bottom"><p>CHIBA <span>/</span> FUJIMI</p><a class="scroll-cue" href="#evening"><span>SCROLL TO THE EVENING</span><span class="scroll-cue-line" aria-hidden="true"></span></a><p class="hero-bottom-note">A NIGHT AT SILK ROAD</p></div>
 </section>
