@@ -1,0 +1,5 @@
+---
+import { shop } from '../data/silkroad';
+import Icon from './Icon.astro';
+---
+<section id="contact" class="contact section-space" aria-labelledby="contact-title"><div class="wrap contact-inner" data-reveal><p class="eyebrow">YOUR NEXT EVENING</p><h2 id="contact-title">今夜のご来店について、<br />お気軽に。</h2><p class="contact-description">お席や料金についてのご質問は、<br class="mobile-break" />お電話・公式LINEへ。</p><a class="contact-phone" href={shop.phoneHref}><Icon name="phone" size={27} /><span>{shop.phone}</span><Icon name="external" size={22} /></a><p class="contact-hours">{shop.hours}<span>定休日：{shop.closed}</span><small>{shop.holidayNote}</small></p><a class="line-button" href={shop.line} target="_blank" rel="noopener noreferrer"><Icon name="line" size={24} /><span>LINEで問い合わせる</span><Icon name="external" size={19} /></a></div></section>

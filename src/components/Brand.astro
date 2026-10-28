@@ -1,0 +1,10 @@
+---
+import { Image } from 'astro:assets';
+import { assets, shop } from '../data/silkroad';
+interface Props { class?: string; priority?: boolean; tone?: 'original' | 'light'; width?: number; }
+const { class: className, priority = false, tone = 'original', width = 430 } = Astro.props;
+const height = Math.round(width * assets.logo.height / assets.logo.width);
+---
+<span class:list={['brand', { 'brand--light': tone === 'light' }, className]}>
+  <Image src={assets.logo} alt={shop.name} width={width} height={height} format="webp" quality={95} loading={priority ? 'eager' : 'lazy'} />
+</span>

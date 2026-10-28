@@ -1,0 +1,14 @@
+---
+import { shop, system, menuSheets } from '../data/silkroad';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+const sheet = menuSheets[0];
+---
+<section id="system" class="system section-space" aria-labelledby="system-title"><div class="system-grid wrap">
+  <div class="system-intro"><SectionHeading number="02" english="SYSTEM & PRICE"><span id="system-title">料金の<br class="desktop-break" />ご案内。</span></SectionHeading><p data-reveal>夜のひとときを、<br />お好みの過ごし方で。</p><a class="text-link" href={sheet.image.src} data-lightbox data-gallery="menu-sheets" data-caption={sheet.label}>料金表を見る<Icon name="external" size={18} /></a></div>
+  <div class="system-content"><div class="base-rates" data-reveal>{[system.set, system.extension].map((rate, i) => <div class:list={['base-rate', { 'base-rate-primary': i === 0 }]}><div class="base-rate-heading"><h3>{rate.label}</h3><p><strong>{rate.time}</strong><span>min.</span></p></div><p class="base-price"><span class="yen">¥</span>{rate.price}<small>／{rate.unit}</small></p></div>)}</div>
+    <div class="included-drinks"><span>飲み放題</span><p>{system.included}</p></div><p class="ladies-note"><span>LADIES</span>{system.ladiesNote}</p>
+    <details class="extra-rates" open><summary>追加料金・オプション<Icon name="plus" size={18} /></summary><dl class="fee-list">{system.extras.map(item => <div><dt>{item.label}{item.note && <small>{item.note}</small>}</dt><dd>¥{item.price}{item.unit && <span>／{item.unit}</span>}</dd></div>)}</dl></details>
+    <div class="system-notes"><p>{system.taxNote}</p><p>{system.roundingNote}</p><p>ドリンク・おつまみなどの追加注文は別料金です。</p></div><a class="text-link" href={shop.line} target="_blank" rel="noopener noreferrer"><Icon name="line" size={19} />料金についてLINEで問い合わせる<Icon name="external" size={17} /></a>
+  </div>
+</div></section>

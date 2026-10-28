@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import { assets } from '../data/silkroad';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+---
+<section id="lounge" class="lounge section-space" aria-labelledby="lounge-title"><div class="wrap">
+  <div class="lounge-intro"><SectionHeading number="01" english="THE LOUNGE"><span id="lounge-title">グラスを交わして、<br />いつもの夜の、その先へ。</span></SectionHeading><p class="section-aside" data-reveal>日常から、少しだけ離れて。<br />千葉・富士見の夜を、シルクロードで。</p></div>
+  <div class="lounge-composition">
+    <figure class="lounge-main" data-reveal><a class="photo-link" href={assets.loungeWide.src} data-lightbox data-gallery="lounge" data-caption="Club シルクロードの店内・ボックス席" aria-label="店内全景の写真を拡大する"><div class="photo-frame"><Image src={assets.loungeWide} alt="暖かな照明の下に黒いボックス席と赤茶色のテーブルが並ぶ店内" widths={[480, 768, 1080, 1290]} sizes="(max-width: 700px) 90vw, 75vw" format="webp" quality={85} loading="lazy" data-parallax="22" /></div><span class="photo-zoom"><Icon name="zoom" size={17} /><span>VIEW</span></span></a><figcaption><span>THE LOUNGE</span> 灯りに包まれる、夜の居場所。</figcaption></figure>
+    <div class="lounge-story" data-reveal><span class="small-rule" aria-hidden="true"></span><h3>話して、笑って、<br />もう一杯。</h3><p>ボックス席で交わす会話も、<br class="desktop-break" />好きな歌を口ずさむ時間も。<br />グラスを片手に、思い思いのひとときを。</p><a class="text-link" href="#system">料金のご案内<Icon name="arrow" /></a></div>
+    <figure class="lounge-detail" data-reveal><a class="photo-link" href={assets.loungeDepth.src} data-lightbox data-gallery="lounge" data-caption="奥へと続くボックス席と店内の通路" aria-label="ボックス席の写真を拡大する"><div class="photo-frame"><Image src={assets.loungeDepth} alt="市松模様の床に沿って奥まで続くボックス席" widths={[480, 768, 1080]} sizes="(max-width: 700px) 82vw, 32vw" format="webp" quality={85} loading="lazy" /></div><span class="photo-zoom"><Icon name="zoom" size={17} /></span></a><figcaption>BOX SEATING <span class="caption-dash">—</span> くつろぎのボックス席</figcaption></figure>
+  </div>
+</div></section>

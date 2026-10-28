@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import { assets, shop } from '../data/silkroad';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+---
+<section id="access" class="access section-space" aria-labelledby="access-title"><div class="wrap">
+  <SectionHeading number="05" english="FIND US"><span id="access-title">富士見の夜、<br />この場所で。</span></SectionHeading>
+  <div class="access-grid">
+    <div class="access-information" data-reveal><h3>{shop.name}</h3><address>{shop.address}<br /><strong>{shop.building}</strong></address><div class="access-stations">{shop.stations.map(station => <p><span>{station.name}</span><span>徒歩 <strong>{station.minutes}</strong> 分</span></p>)}</div><dl class="access-facts"><div><dt>営業時間</dt><dd>{shop.hours}</dd></div><div><dt>定休日</dt><dd>{shop.closed}<small>{shop.holidayNote}</small></dd></div><div><dt>席数</dt><dd>{shop.seats}</dd></div></dl><a class="text-link" href={shop.directions} target="_blank" rel="noopener noreferrer"><Icon name="map" />Googleマップで経路を見る<Icon name="external" size={17} /></a></div>
+    <div class="access-map" data-reveal><iframe src={shop.mapEmbed} title="Club シルクロード周辺の地図" width="640" height="480" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><a href={shop.map} target="_blank" rel="noopener noreferrer">Googleマップで開く<Icon name="external" size={16} /></a></div>
+    <figure class="access-entrance" data-reveal><a class="photo-link" href={assets.entrance.src} data-lightbox data-gallery="entrance" data-caption="KICビルワンの入口付近。お店は3Fです。" aria-label="建物の入口写真を拡大する"><div class="photo-frame"><Image src={assets.entrance} alt="夜の富士見の通りとKICビルワンの入口" widths={[480, 768, 1080, 1290]} sizes="(max-width: 700px) 90vw, 70vw" format="webp" quality={85} loading="lazy" /></div><span class="photo-zoom"><Icon name="zoom" size={17} /></span></a><figcaption><span>AT THE ENTRANCE</span><span>KICビルワンの入口が目印。<br class="mobile-break" />お店は3Fです。</span></figcaption></figure>
+  </div>
+</div></section>

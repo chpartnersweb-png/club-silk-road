@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+---
+<dialog id="image-viewer" class="image-dialog" aria-labelledby="image-viewer-caption">
+  <div class="image-dialog-toolbar"><p id="image-viewer-counter" aria-live="polite"></p><div><button class="viewer-zoom" type="button" data-viewer-zoom aria-pressed="false"><Icon name="zoom" size={17} /><span>拡大する</span></button><a id="image-viewer-original" href="#" target="_blank" rel="noopener noreferrer">元の画像<Icon name="external" size={16} /></a><button class="icon-button" type="button" data-dialog-close aria-label="画像を閉じる"><Icon name="close" size={23} /></button></div></div>
+  <div class="image-dialog-viewport"><figure><img id="image-viewer-image" alt="" /><figcaption id="image-viewer-caption"></figcaption></figure><p class="viewer-status" role="status" hidden></p></div>
+  <div class="image-dialog-navigation"><button type="button" class="icon-button viewer-prev" data-viewer-prev aria-label="前の画像"><Icon name="chevron" /></button><p>左右の矢印キーでも切り替えられます</p><button type="button" class="icon-button" data-viewer-next aria-label="次の画像"><Icon name="chevron" /></button></div>
+</dialog>

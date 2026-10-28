@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import { assets, shop } from '../data/silkroad';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+---
+<section class="moments section-space" aria-labelledby="moments-title"><div class="wrap moments-grid">
+  <div class="moments-intro"><SectionHeading number="04" english="MOMENTS AT SILK ROAD"><span id="moments-title">笑顔が集まる、<br />ひととき。</span></SectionHeading><p data-reveal>乾杯に、歌声に、季節の彩りに。<br />お店で過ごす時間の、いくつかの表情。</p><a class="text-link" href={shop.instagram} target="_blank" rel="noopener noreferrer"><Icon name="instagram" />Instagramを見る<Icon name="external" size={17} /></a><span class="instagram-handle">{shop.instagramHandle}</span></div>
+  <figure class="moments-wide" data-reveal><a class="photo-link" href={assets.anniversary.src} data-lightbox data-gallery="moments" data-caption="周年イベントのひととき（過去のイベント写真）" aria-label="周年イベントの写真を拡大する"><div class="photo-frame"><Image src={assets.anniversary} alt="周年の飾りの前に集まったイベント時の集合写真" widths={[480, 768, 1140]} sizes="(max-width: 700px) 90vw, 48vw" format="webp" quality={85} loading="lazy" /></div><span class="photo-zoom"><Icon name="zoom" size={17} /></span></a><figcaption>周年イベントのひととき</figcaption></figure>
+  <figure class="moments-portrait" data-reveal><a class="photo-link" href={assets.seasonal.src} data-lightbox data-gallery="moments" data-caption="季節のイベントから（過去のイベント写真）" aria-label="季節のイベント写真を拡大する"><div class="photo-frame"><Image src={assets.seasonal} alt="季節の衣装と飾り付けを楽しむイベント時の写真" widths={[400, 640, 1080]} sizes="(max-width: 700px) 70vw, 30vw" format="webp" quality={85} loading="lazy" /></div><span class="photo-zoom"><Icon name="zoom" size={17} /></span></a><figcaption>季節のイベントから</figcaption></figure>
+  <p class="moments-footnote">掲載写真は過去のイベント時のものです。<br />お店からのお知らせは公式Instagramをご覧ください。</p>
+</div></section>

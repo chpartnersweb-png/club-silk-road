@@ -1,0 +1,17 @@
+---
+import { navigation, shop } from '../data/silkroad';
+import Icon from './Icon.astro';
+import Brand from './Brand.astro';
+---
+<header class="site-header" data-header>
+  <a class="header-logo" href="#top" aria-label={`${shop.name} トップへ`}><Brand class="header-brand" tone="light" width={340} priority /></a>
+  <nav class="desktop-nav" aria-label="メインナビゲーション">{navigation.map(({ href, label }) => <a href={href}>{label}</a>)}</nav>
+  <div class="header-actions"><a class="header-phone" href={shop.phoneHref} aria-label={`電話する ${shop.phone}`}><Icon name="phone" size={17} /><span>{shop.phone}</span></a><a class="header-line" href={shop.line} target="_blank" rel="noopener noreferrer"><Icon name="line" size={18} /><span>LINE</span></a></div>
+  <a class="mobile-menu-fallback" href="#footer-nav">メニュー</a>
+  <button class="menu-toggle" type="button" data-menu-open aria-haspopup="dialog" aria-controls="site-menu" hidden><span>MENU</span><span class="menu-toggle-lines" aria-hidden="true"></span></button>
+</header>
+<dialog id="site-menu" class="nav-dialog" aria-labelledby="nav-dialog-title">
+  <div class="nav-dialog-top"><div id="nav-dialog-title"><Brand class="menu-brand" tone="light" width={340} /></div><button type="button" class="icon-button" data-dialog-close aria-label="メニューを閉じる"><Icon name="close" /></button></div>
+  <nav aria-label="スマートフォンナビゲーション">{navigation.map(({ href, label, en }, i) => <a href={href}><span class="nav-dialog-index">0{i + 1}</span><span>{label}<small>{en}</small></span><Icon name="external" /></a>)}</nav>
+  <div class="nav-dialog-contact"><p>{shop.hours}<br /><small>定休日：{shop.closed}<br />{shop.holidayNote}</small></p><a href={shop.line} target="_blank" rel="noopener noreferrer"><Icon name="line" />LINEで問い合わせる<Icon name="external" size={16} /></a></div>
+</dialog>

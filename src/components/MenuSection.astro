@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+import { assets, menuCategories, menuSheets } from '../data/silkroad';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+---
+<section id="menu" class="menu-section section-space" aria-labelledby="menu-title"><div class="wrap">
+  <div class="menu-intro"><SectionHeading number="03" english="DRINKS & BITES"><span id="menu-title">乾杯の、そのあとも。</span></SectionHeading><p class="section-aside" data-reveal>いつもの一杯も、少し特別な一本も。<br />おしゃべりのお供には、おつまみを。</p></div>
+  <div class="drink-composition">
+    <figure class="drink-main" data-reveal><a class="photo-link" href={assets.toast.src} data-lightbox data-gallery="drinks" data-caption="ボトルとフルーツを囲むひととき" aria-label="ボトルとフルーツの写真を拡大する"><div class="photo-frame"><Image src={assets.toast} alt="アイスバケットのボトルとテーブルに並ぶフルーツ" widths={[480, 768, 1080, 1290]} sizes="(max-width: 700px) 90vw, 65vw" format="webp" quality={85} loading="lazy" data-parallax="18" /></div><span class="photo-zoom"><Icon name="zoom" size={17} /></span></a><figcaption>FOR A GOOD EVENING</figcaption></figure>
+    <div class="drink-side"><p class="drink-handwritten" aria-hidden="true" data-reveal>One more<br /><span>good moment.</span></p><figure data-reveal><a class="photo-link" href={assets.bottles.src} data-lightbox data-gallery="drinks" data-caption="グラスを片手に楽しむ夜" aria-label="ドリンクの写真を拡大する"><div class="photo-frame"><Image src={assets.bottles} alt="カラフルなボトルとグラスが並ぶテーブル" widths={[400, 640, 900]} sizes="(max-width: 700px) 56vw, 25vw" format="webp" quality={85} loading="lazy" /></div><span class="photo-zoom"><Icon name="zoom" size={17} /></span></a></figure></div>
+  </div>
+  <div class="menu-list-header"><h3>メニュー</h3><p>表示価格は税別です。別途消費税10％を頂戴します。</p></div>
+  <div class="menu-accordions">{menuCategories.map((category, index) => <details class="menu-category" open={index === 0}>
+    <summary><span class="menu-index">0{index + 1}</span><span class="menu-category-title">{category.title}<small>{category.en}</small></span><Icon name="plus" class="accordion-plus" size={22} /></summary>
+    <div class="menu-category-content">{category.groups.map(group => <div class="menu-group">{group.title && <h4>{group.title}</h4>}<dl class="menu-items">{group.items.map(([name, price]) => <div><dt>{name}</dt><dd>¥{price}</dd></div>)}</dl></div>)}{category.note && <p class="menu-category-note">{category.note}</p>}</div>
+  </details>)}</div>
+  <details class="menu-originals"><summary><span>メニュー表を画像で見る<small>料金表・ドリンク・おつまみ</small></span><Icon name="plus" size={20} /></summary><div class="menu-original-links">{menuSheets.slice(1).map(sheet => <a href={sheet.image.src} data-lightbox data-gallery="menu-sheets" data-caption={sheet.label}>{sheet.label}<Icon name="external" size={17} /></a>)}</div></details>
+</div></section>

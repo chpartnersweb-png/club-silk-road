@@ -1,0 +1,7 @@
+---
+import { navigation, shop } from '../data/silkroad';
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+---
+<footer class="site-footer"><div class="wrap footer-main"><div class="footer-business"><a href="#top" aria-label={`${shop.name} トップへ`}><Brand class="footer-brand" /></a><p>{shop.address}<br />{shop.building}</p><a class="footer-phone" href={shop.phoneHref}>{shop.phone}</a></div><nav id="footer-nav" class="footer-nav" aria-label="フッターナビゲーション">{navigation.map(item => <a href={item.href}>{item.label}</a>)}<a href="#contact">お問い合わせ</a></nav><div class="footer-social"><p class="micro-label">FOLLOW / CONTACT</p><a href={shop.instagram} target="_blank" rel="noopener noreferrer"><Icon name="instagram" size={19} />Instagram<Icon name="external" size={15} /></a><a href={shop.line} target="_blank" rel="noopener noreferrer"><Icon name="line" size={19} />公式LINE<Icon name="external" size={15} /></a></div></div><div class="wrap footer-bottom"><small>© {new Date().getFullYear()} Club シルクロード</small><a href="#top">BACK TO TOP<span aria-hidden="true">↑</span></a></div></footer>
+<nav class="mobile-contact-bar" aria-label="来店のお問い合わせ"><a href={shop.phoneHref}><Icon name="phone" size={19} /><span>電話する</span></a><a class="mobile-contact-line" href={shop.line} target="_blank" rel="noopener noreferrer"><Icon name="line" size={21} /><span>LINEで問い合わせ</span><Icon name="external" size={14} /></a></nav>

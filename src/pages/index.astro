@@ -1,16 +1,20 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import HoursStrip from '../components/HoursStrip.astro';
+import LoungeSection from '../components/LoungeSection.astro';
+import SystemSection from '../components/SystemSection.astro';
+import MenuSection from '../components/MenuSection.astro';
+import MomentsSection from '../components/MomentsSection.astro';
+import AccessSection from '../components/AccessSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ImageDialog from '../components/ImageDialog.astro';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <SiteHeader />
+  <main id="main"><Hero /><HoursStrip /><LoungeSection /><SystemSection /><MenuSection /><MomentsSection /><AccessSection /><ContactSection /></main>
+  <SiteFooter />
+  <ImageDialog />
+</BaseLayout>

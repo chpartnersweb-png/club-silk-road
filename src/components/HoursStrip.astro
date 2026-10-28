@@ -1,0 +1,5 @@
+---
+import { shop } from '../data/silkroad';
+const [opens, closes] = shop.hours.split('〜');
+---
+<section id="evening" class="hours-strip" aria-label="営業時間と最寄り駅"><div class="hours-strip-main wrap"><p class="hours-time"><span class="micro-label">OPEN</span><span>{opens} <i>—</i> {closes}</span></p><div class="hours-stations">{shop.stations.map(station => <p>{station.name}<span>徒歩 <strong>{station.minutes}</strong> 分</span></p>)}</div><p class="hours-closed"><span>定休日：{shop.closed}</span><small>{shop.holidayNote}</small></p></div></section>

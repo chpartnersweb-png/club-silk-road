@@ -1,0 +1,8 @@
+---
+interface Props { number: string; english: string; class?: string; }
+const { number, english, class: className } = Astro.props;
+---
+<div class:list={['section-heading', className]} data-reveal>
+  <p class="eyebrow"><span>{number}</span><span class="eyebrow-line"></span>{english}</p>
+  <h2><slot /></h2>
+</div>
